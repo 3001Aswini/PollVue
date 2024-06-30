@@ -2,13 +2,12 @@ import streamlit as st
 import firebase_admin
 from firebase_admin import credentials, auth
 
-# Check if Firebase app is already initialized
+
 if not firebase_admin._apps:
     # Initialize Firebase Admin SDK
     cred = credentials.Certificate("./serviceAccountKey.json")
     firebase_admin.initialize_app(cred)
 
-# Function to create a new user with Firebase Authentication
 
 def register_user(email, password):
     try:
@@ -20,7 +19,7 @@ def register_user(email, password):
     except Exception as e:
         st.error(f"Error creating user: {e}")
 
-# Function to sign in an existing user with Firebase Authentication
+
 def login_user(email, password):
     try:
         user = auth.get_user_by_email(email)
@@ -30,7 +29,7 @@ def login_user(email, password):
     except Exception as e:
         st.error(f"Error logging in: {e}")
 
-# Streamlit UI
+
 def main():
     st.title("Firebase Authentication with Streamlit")
 
